@@ -10,7 +10,7 @@ const updateRssDalay = 10 // minutes
 
 console.log('bot is working ...')
 
-// parseNews('https://www.vioms.ru/mailings/36252/full')
+parseNews('https://www.vioms.ru/mailings/35988/full')
 
 bot.on('message', (msg) => {
     const chatId = msg.chat.id;

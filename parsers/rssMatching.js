@@ -10,7 +10,6 @@ const getNewsLinks = (newDataArr, previousDataArr) => {
   } else {
     newsArr = 0
   }
-  console.log(newsArr.length)
   return newsArr
 }
 
