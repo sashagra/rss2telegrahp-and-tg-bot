@@ -1,0 +1,34 @@
+{
+  "name": "my-tg-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "db.json",
+      "data/",
+      "docs/*"
+    ],
+    "delay": "2500"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "cheerio": "^1.0.0-rc.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "htmlparser2": "^4.1.0",
+    "node-telegram-bot-api": "^0.50.0",
+    "rss-parser": "^3.9.0",
+    "util": "^0.12.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
