@@ -6,7 +6,7 @@ const app = express()
 const botAwaking = require('./botPushing')
 const APPLICATION_URL = 'https://ancient-mountain-02523.herokuapp.com/'
 const PORT = process.env.PORT || 80
-const updateRssDalay = 1 // minutes
+const updateRssDalay = 10 // minutes
 
 console.log('bot is working ...')
 
@@ -23,12 +23,15 @@ bot.on('message', (msg) => {
 setInterval(() => {
     // botAwaking(APPLICATION_URL);
     parseRss()
-        .then((data) => {
-            if (data) {
-                parseNews(data.link)
-                console.log(data)
-            };
-        })
+    .then((links) => {
+        if (links && links.length) {
+            links.reverse().forEach((link, idx) => {
+                setTimeout(() => {
+                    parseNews(link)
+                }, 2000 * (idx + 1))
+            })
+        };
+    })
         .catch(err => console.log(err));
 }, 1000 * 60 * updateRssDalay)
 

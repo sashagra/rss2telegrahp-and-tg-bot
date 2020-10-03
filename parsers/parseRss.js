@@ -17,7 +17,7 @@ module.exports = async () => {
     rssNewData.push({title: item.title, link: item.link + '/full', date: item.pubDate});
   });
   const linksWithNews = getNewsLinks(rssNewData, rssData)
-  if (!linksWithNews) {
+  if (linksWithNews.length) {
     fs.writeFile(path.join(__dirname, '..', 'data', 'rss.json'), JSON.stringify((rssNewData)), (err) => {
       if (err) throw err;
     });
