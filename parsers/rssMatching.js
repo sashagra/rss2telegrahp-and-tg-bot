@@ -1,11 +1,11 @@
-const getNewsLinks = (newDataArr, oldDataArr) => {
+const getNewsLinks = (newDataArr, previousDataArr) => {
   let newsArr = []
-  oldDataArr = oldDataArr.map(el => el.link)
+  previousDataArr = previousDataArr.map(el => el.link)
   newDataArr = newDataArr.map(el => el.link)
-  if (newDataArr[0] && oldDataArr[0]) {
+  if (newDataArr[0] && previousDataArr[0]) {
     newDataArr.forEach(newLink => {
-      const isNewLink = oldDataArr.includes(newLink)
-      if (!isNewLink) newsArr.push(newLink)
+      const isPostedLink = previousDataArr.includes(newLink)
+      if (!isPostedLink) newsArr.push(newLink)
     })
   } else {
     newsArr = 0
