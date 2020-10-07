@@ -6,6 +6,7 @@ const app = express()
 const botAwaking = require('./botPushing')
 const APPLICATION_URL = 'https://ancient-mountain-02523.herokuapp.com/'
 const PORT = process.env.PORT || 80
+const { telegramPostMarkdown, telegramPostHtml } = require('./telegram/tgApi') 
 const updateRssDalay = 10 // minutes
 
 console.log('bot is working ...')
@@ -18,6 +19,8 @@ bot.on('message', (msg) => {
 
     // send a message to the chat acknowledging receipt of their message
     bot.sendMessage(chatId, 'Received your message');
+    telegramPostHtml(`<b>${msg.text}</b>
+    просто текст`)
   });
 
 setInterval(() => {
@@ -40,6 +43,7 @@ setInterval(() => {
 // })
 
 // app.listen(PORT, () => console.log('Bot is working'))
-
+// TODO большие посты в телеграф, малые в телегу
 // TODO универсальный парсинг страничек
 // TODO функция добавления чата или канала для постинга
+// TODO выбор в диалоге, что постить

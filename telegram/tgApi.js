@@ -13,5 +13,17 @@ module.exports = {
     telegramPost: (message) => {
         bot.sendMessage(CHAT_ID, message); 
     },
-    bot
+    bot,
+    telegramPostMarkdown: (message) => {
+        bot.sendMessage(CHAT_ID, message, {
+            parse_mode: "MarkdownV2"
+        }); 
+    },
+    telegramPostHtml: (message) => {
+        bot.sendMessage(CHAT_ID, message, {
+            parse_mode: "HTML"
+        }); 
+        const url = 'https://telegram.org/img/t_logo.png';
+        bot.sendPhoto(CHAT_ID, url);
+    },
 }
