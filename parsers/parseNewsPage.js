@@ -3,9 +3,11 @@ const htmlparser2 = require('htmlparser2');
 const { domToTelegraphPost } = require('../telegraph/telegraphConvert')
 const createTelegraphPost = require('../telegraph/telegraph');
 const { NAME_OF_CHANEL } = require('../config');
-const {telegramPost} = require('../telegram/tgApi');
-const parseNews = (link) => {
+const { telegramPost, telegramPostMarkdown, telegramPostHtml } = require('../telegram/tgApi');
+const schedulePost = require('../custom-posts/schedule')
 
+const parseNews = (link) => {
+    const scheduleTitle = 'Расписание лекций'
     https.get(link, (resp) => {
     let data = '';
     resp.on('data', (chunk) => {
@@ -15,7 +17,6 @@ const parseNews = (link) => {
         let dom = htmlparser2.parseDOM(data);
         const { postNodes, postTitle} = domToTelegraphPost(dom)
         if (postTitle && postNodes) {
-            const scheduleTitle = 'Расписание лекций'
             if (postTitle.slice(0, scheduleTitle.length) !== scheduleTitle) {
                     createTelegraphPost(
                         postTitle,
@@ -24,14 +25,14 @@ const parseNews = (link) => {
                         link
                         );
                 } else {
-                    telegramPost(`${postTitle}\n\n${link.slice(0, link.length - 5)}`)
+                    telegramPostHtml(schedulePost('HTML', link))
                 }
         } else {
             console.log('Пост не отправлен')
         }
     });
     }).on("error", (err) => {
-    console.log("Error: " + err.message);
+        console.log("Error: " + err.message);
     });
 }
 

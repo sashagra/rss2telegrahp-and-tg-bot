@@ -11,6 +11,6 @@ module.exports = {
   ACCESS_TOKEN: process.env.ACCESS_TOKEN,
   AUTH_URL: process.env.AUTH_URL,
   NAME_OF_CHANEL: 'Новости минской общины',
-  RSS_URL: 'https://www.vioms.ru/email_lists/151.rss',
-  CHANEL_PICTURE_URL: 'https://krishna.by/images/yootheme/logo.png'
+  RSS_URL: process.env.RSS_URL,
+  CHANEL_PICTURE_URL: process.env.CHANEL_PICTURE_URL
 };

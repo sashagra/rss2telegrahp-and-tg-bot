@@ -10,9 +10,9 @@ const { telegramPostMarkdown, telegramPostHtml } = require('./telegram/tgApi')
 const updateRssDalay = 10 // minutes
 
 console.log('bot is working ...')
-
-// parseNews('https://www.vioms.ru/mailings/35988/full')
-
+// https://www.vioms.ru/mailings/36449/full расписание
+parseNews('https://www.vioms.ru/mailings/36449/full')
+// https://www.vioms.ru/mailings/36450/full служение ферме
 bot.on('message', (msg) => {
     const chatId = msg.chat.id;
     console.log(msg)
