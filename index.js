@@ -5,8 +5,7 @@ const express = require('express')
 const app = express()
 const botAwaking = require('./botPushing')
 const {APPLICATION_URL} = require('./config')
-const PORT = process.env.PORT || 80
-const { telegramPostMarkdown, telegramPostHtml } = require('./telegram/tgApi') 
+const PORT = process.env.PORT || 80 
 const updateRssDalay = 10 // minutes
 
 // console.log('bot is working ...')
@@ -16,13 +15,9 @@ const updateRssDalay = 10 // minutes
 // parseNews('https://www.vioms.ru/mailings/36451/full')
 
 bot.on('message', (msg) => {
-    const chatId = msg.chat.id;
     console.log(msg)
-
     // send a message to the chat acknowledging receipt of their message
-    bot.sendMessage(chatId, 'Received your message');
-    telegramPostHtml(`<b>${msg.text}</b>
-    просто текст`)
+    bot.sendMessage(msg.chat.id, `Received your message\n${msg.text}`);
   });
 
 setInterval(() => {
