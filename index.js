@@ -8,11 +8,13 @@ const APPLICATION_URL = 'https://ancient-mountain-02523.herokuapp.com/'
 const PORT = process.env.PORT || 80
 const { telegramPostMarkdown, telegramPostHtml } = require('./telegram/tgApi') 
 const updateRssDalay = 10 // minutes
+const { replaceSymbol } = require('./telegraph/telegraphConvert')
 
 console.log('bot is working ...')
-// https://www.vioms.ru/mailings/36449/full расписание
-parseNews('https://www.vioms.ru/mailings/36449/full')
-// https://www.vioms.ru/mailings/36450/full служение ферме
+
+// parseNews('https://www.vioms.ru/mailings/36449/full')
+// parseNews('https://www.vioms.ru/mailings/36450/full')
+
 bot.on('message', (msg) => {
     const chatId = msg.chat.id;
     console.log(msg)
