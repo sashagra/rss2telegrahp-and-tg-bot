@@ -4,11 +4,10 @@ const { bot } = require('./telegram/tgApi')
 const express = require('express')
 const app = express()
 const botAwaking = require('./botPushing')
-const APPLICATION_URL = process.env.APPLICATION_URL
+const {APPLICATION_URL} = require('./config')
 const PORT = process.env.PORT || 80
 const { telegramPostMarkdown, telegramPostHtml } = require('./telegram/tgApi') 
 const updateRssDalay = 10 // minutes
-const { replaceSymbol } = require('./telegraph/telegraphConvert')
 
 // console.log('bot is working ...')
 
