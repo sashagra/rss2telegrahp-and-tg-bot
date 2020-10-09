@@ -4,15 +4,15 @@ const { bot } = require('./telegram/tgApi')
 const express = require('express')
 const app = express()
 const botAwaking = require('./botPushing')
-const APPLICATION_URL = 'https://ancient-mountain-02523.herokuapp.com/'
+const APPLICATION_URL = process.env.APPLICATION_URL
 const PORT = process.env.PORT || 80
 const { telegramPostMarkdown, telegramPostHtml } = require('./telegram/tgApi') 
 const updateRssDalay = 10 // minutes
 const { replaceSymbol } = require('./telegraph/telegraphConvert')
 
-console.log('bot is working ...')
+// console.log('bot is working ...')
 
-parseNews('https://www.vioms.ru/mailings/36449/full')
+// parseNews('https://www.vioms.ru/mailings/36449/full')
 // parseNews('https://www.vioms.ru/mailings/36450/full')
 
 bot.on('message', (msg) => {
@@ -26,7 +26,7 @@ bot.on('message', (msg) => {
   });
 
 setInterval(() => {
-    // botAwaking(APPLICATION_URL);
+    botAwaking(APPLICATION_URL);
     parseRss()
     .then((links) => {
         if (links && links.length) {
@@ -40,11 +40,11 @@ setInterval(() => {
         .catch(err => console.log(err));
 }, 1000 * 60 * updateRssDalay)
 
-// app.get('*', (req, res) => {
-//     res.end('<h1>Bot is working...</h1>')
-// })
+app.get('*', (req, res) => {
+    res.end('<h1>Bot is working...</h1>')
+})
 
-// app.listen(PORT, () => console.log('Bot is working'))
+app.listen(PORT, () => console.log('Bot is working'))
 // TODO большие посты в телеграф, малые в телегу
 // TODO универсальный парсинг страничек
 // TODO функция добавления чата или канала для постинга

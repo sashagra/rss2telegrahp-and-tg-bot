@@ -12,5 +12,6 @@ module.exports = {
   AUTH_URL: process.env.AUTH_URL,
   NAME_OF_CHANNEL: process.env.NAME_OF_CHANNEL,
   RSS_URL: process.env.RSS_URL,
-  CHANNEL_PICTURE_URL: process.env.CHANNEL_PICTURE_URL
+  CHANNEL_PICTURE_URL: process.env.CHANNEL_PICTURE_URL,
+  APPLICATION_URL: process.env.APPLICATION_URL
 };
