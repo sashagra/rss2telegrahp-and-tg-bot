@@ -12,7 +12,7 @@ const { replaceSymbol } = require('./telegraph/telegraphConvert')
 
 console.log('bot is working ...')
 
-// parseNews('https://www.vioms.ru/mailings/36449/full')
+parseNews('https://www.vioms.ru/mailings/36449/full')
 // parseNews('https://www.vioms.ru/mailings/36450/full')
 
 bot.on('message', (msg) => {

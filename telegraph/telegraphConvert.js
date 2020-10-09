@@ -1,5 +1,5 @@
 const cheerio = require('cheerio')
-const { CHANEL_PICTURE_URL } = require('../config')
+const { CHANNEL_PICTURE_URL } = require('../config')
 
 const domToTelegraphPost = dom => {
   const $ = cheerio.load(dom)
@@ -21,7 +21,7 @@ const domToTelegraphPost = dom => {
       }
     }
   })
-  const pictureUrl = bigPictures.length ? bigPictures[0] : CHANEL_PICTURE_URL
+  const pictureUrl = bigPictures.length ? bigPictures[0] : CHANNEL_PICTURE_URL
 
   postNodes.push({
     tag: 'img',

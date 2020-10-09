@@ -10,7 +10,7 @@ module.exports = {
   CHAT_ID: process.env.CHAT_ID,
   ACCESS_TOKEN: process.env.ACCESS_TOKEN,
   AUTH_URL: process.env.AUTH_URL,
-  NAME_OF_CHANEL: 'Новости минской общины',
+  NAME_OF_CHANNEL: process.env.NAME_OF_CHANNEL,
   RSS_URL: process.env.RSS_URL,
-  CHANEL_PICTURE_URL: process.env.CHANEL_PICTURE_URL
+  CHANNEL_PICTURE_URL: process.env.CHANNEL_PICTURE_URL
 };

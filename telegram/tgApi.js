@@ -1,6 +1,6 @@
 const TelegramBot = require('node-telegram-bot-api');
 const { TOKKEN, CHAT_ID } = require('../config');
-const { CHANEL_PICTURE_URL } = require('../config');
+const { CHANNEL_PICTURE_URL } = require('../config');
 
 const bot = new TelegramBot(TOKKEN, {polling: {
     interval: 300,
