@@ -1,8 +1,9 @@
 const { httpsPost } = require('../helpers/httpsPostPromise')
 const { telegramPost } = require('../telegram/tgApi');
 const { ACCESS_TOKEN, AUTH_URL } = require('../config')
-const createTelegraphPost = (title, authorName, content, authorUrl = "") => {
 
+
+const createTelegraphPost = (title, authorName, content, authorUrl = "") => {
   httpsPost('api.telegra.ph', '/createPage', {
     access_token: ACCESS_TOKEN,
     title,
