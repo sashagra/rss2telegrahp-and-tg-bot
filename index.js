@@ -13,6 +13,7 @@ const updateRssDalay = 10 // minutes
 
 // parseNews('https://www.vioms.ru/mailings/36449/full')
 // parseNews('https://www.vioms.ru/mailings/36450/full')
+// parseNews('https://www.vioms.ru/mailings/36451/full')
 
 bot.on('message', (msg) => {
     const chatId = msg.chat.id;
