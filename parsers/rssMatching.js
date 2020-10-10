@@ -1,17 +1,13 @@
+const isNewPost = require('../helpers/compareDate')
+
 const getNewsLinks = (newDataArr, previousDataArr) => {
-  let newsArr = []
+  let newsLinks = []
   previousDataArr = previousDataArr.map(el => el.link)
-  // newDataArr.filter(el => el.data - new Date < 10)
-  newDataArr = newDataArr.map(el => el.link)
-  if (newDataArr[0] && previousDataArr[0]) {
-    newDataArr.forEach(newLink => {
-      const isPostedLink = previousDataArr.includes(newLink)
-      if (!isPostedLink) newsArr.push(newLink)
-    })
-  } else {
-    newsArr = 0
-  }
-  return newsArr
+  newDataArr.forEach(n => {
+    const isPostedLink = previousDataArr.includes(n.link)
+    if (!isPostedLink && isNewPost(n.date)) newsLinks.push(n.link)
+  })
+  return {newsLinks, isWriteFile: newDataArr[0].link !== previousDataArr[0].link}
 }
 
 module.exports = { getNewsLinks }

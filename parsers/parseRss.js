@@ -15,13 +15,13 @@ module.exports = async () => {
     rssNewData.push({title: item.title, link: item.link + '/full', date: item.pubDate});
   });
 
-  const newsLinks = getNewsLinks(rssNewData, rssPreviousData)
-  if (newsLinks.length) {
+  const {newsLinks, isWriteFile} = getNewsLinks(rssNewData, rssPreviousData)
+  if (isWriteFile) {
     fs.writeFile(path.join(__dirname, '..', 'data', 'rss.json'), JSON.stringify((rssNewData)), (err) => {
       if (err) throw err;
     });
     console.log('Новые данные записаны', new Date().toLocaleTimeString())
-    return newsLinks
+    if (newsLinks.length) return newsLinks
   } else {
     console.log('Данные актуальны',  new Date().toLocaleTimeString())
     return 0
