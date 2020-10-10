@@ -6,6 +6,7 @@ const app = express()
 const botAwaking = require('./botPushing')
 const {APPLICATION_URL} = require('./config')
 const PORT = process.env.PORT || 80 
+const load = require('./data/loadDB')
 const updateRssDalay = 10 // minutes
 
 // console.log('bot is working ...')
@@ -13,6 +14,9 @@ const updateRssDalay = 10 // minutes
 // parseNews('https://www.vioms.ru/mailings/36449/full')
 // parseNews('https://www.vioms.ru/mailings/36450/full')
 // parseNews('https://www.vioms.ru/mailings/36496/full')
+
+// Check news and create file
+load.checkAndCreateFile()
 
 bot.on('message', (msg) => {
     console.log(msg)
@@ -28,7 +32,7 @@ setInterval(() => {
             links.reverse().forEach((link, idx) => {
                 setTimeout(() => {
                     parseNews(link)
-                }, 2000 * (idx + 1))
+                }, 20000 * (idx + 1))
             })
         };
     })
@@ -39,8 +43,10 @@ app.get('*', (req, res) => {
     res.end('<h1>Bot is working...</h1>')
 })
 
-app.listen(PORT, () => console.log('Bot is working'))
+app.listen(PORT, () => console.log('Bot is working...'))
 // TODO большие посты в телеграф, малые в телегу
 // TODO универсальный парсинг страничек
 // TODO функция добавления чата или канала для постинга
 // TODO выбор в диалоге, что постить
+// TODO в первый запуск публиковать только сегодняшние посты или никакие.
+// TODO проверять есть ли rss.json и сооздавать если нету
