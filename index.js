@@ -12,7 +12,7 @@ const updateRssDalay = 10 // minutes
 
 // parseNews('https://www.vioms.ru/mailings/36449/full')
 // parseNews('https://www.vioms.ru/mailings/36450/full')
-parseNews('https://www.vioms.ru/mailings/36496/full')
+// parseNews('https://www.vioms.ru/mailings/36496/full')
 
 bot.on('message', (msg) => {
     console.log(msg)
