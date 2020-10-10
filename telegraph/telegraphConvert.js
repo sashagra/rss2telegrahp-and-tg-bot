@@ -5,17 +5,16 @@ const domToTelegraphPost = dom => {
   const $ = cheerio.load(dom)
   const postNodes = []
   let postTitle = $('title').text()
-  const quoteMark = '&quot;'
-  postTitle = postTitle.split(quoteMark).join('"')
+  postTitle = postTitle.split('&quot;').join('"')
   let bigPictures = []
   $('img').each((idx, pic) => {
     if (pic.attribs.width) {
-      if (pic.attribs.width >= 300) bigPictures.push(pic.attribs.src)
+      if (pic.attribs.width >= 200) bigPictures.push(pic.attribs.src)
     } else {
       if (pic.attribs.style) {
         pic.attribs.style.split('; ').forEach(el => {
            if (el.slice(0, 5) === 'width') {
-            if (el.split(':')[1].split('px')[0] >= 300) bigPictures.push(pic.attribs.src)
+            if (el.split(':')[1].split('px')[0] >= 200) bigPictures.push(pic.attribs.src)
            }
         })
       }
