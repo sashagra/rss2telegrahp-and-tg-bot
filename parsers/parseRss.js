@@ -21,7 +21,6 @@ module.exports = async () => {
       if (err) throw err;
     });
     console.log('Новые данные записаны', new Date().toLocaleTimeString())
-    console.log(newsLinks)
     if (newsLinks.length) return newsLinks
   } else {
     console.log('Данные актуальны',  new Date().toLocaleTimeString())
