@@ -7,7 +7,8 @@ const getNewsLinks = (newDataArr, previousDataArr) => {
     const isPostedLink = previousDataArr.includes(n.link)
     if (!isPostedLink && isNewPost(n.date)) newsLinks.push(n.link)
   })
-  return {newsLinks, isWriteFile: newDataArr[0].link !== previousDataArr[0].link}
+  console.log(newDataArr[0].link, previousDataArr[0])
+  return {newsLinks, isWriteFile: newDataArr[0].link !== previousDataArr[0]}
 }
 
 module.exports = { getNewsLinks }

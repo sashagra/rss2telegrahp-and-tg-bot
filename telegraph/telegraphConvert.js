@@ -47,7 +47,10 @@ const replaceSymbol = txt => {
     ['&asymp;', '≈'],
     ['&quot;', '"'],
     ['(Гость)', ''],
-    ['&copy;', '©']
+    ['&copy;', '©'],
+    ['&mdash;', '—'],
+    ['&laquo;', '«'],
+    ['&raquo;', '»'],
   ]
 
   replacementTable.forEach(sym => {

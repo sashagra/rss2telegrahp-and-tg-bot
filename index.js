@@ -7,7 +7,7 @@ const botAwaking = require('./botPushing')
 const {APPLICATION_URL} = require('./config')
 const PORT = process.env.PORT || 80 
 const load = require('./data/loadDB')
-const updateRssDalay = 1 // minutes
+const updateRssDalay = 10 // minutes
 
 // console.log('bot is working ...')
 
@@ -25,7 +25,7 @@ bot.on('message', (msg) => {
   });
 
 setInterval(() => {
-    // botAwaking(APPLICATION_URL);
+    botAwaking(APPLICATION_URL);
     parseRss()
     .then((links) => {
         if (links && links.length) {

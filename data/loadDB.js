@@ -17,6 +17,7 @@ class load {
     static async checkAndCreateFile() {
         fs.access(rssFile, (err) => {
             if (err) {
+                console.log('создаю файл')
                 fs.writeFile(rssFile, jsonData, (err) => {
                     if (err) {
                         resolve(false)
