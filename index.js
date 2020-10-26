@@ -6,7 +6,6 @@ const app = express()
 const botAwaking = require('./botPushing')
 const {APPLICATION_URL} = require('./config')
 const PORT = process.env.PORT || 80 
-const load = require('./data/loadDB')
 const updateRssDalay = 10 // minutes
 
 // console.log('bot is working ...')
@@ -15,8 +14,7 @@ const updateRssDalay = 10 // minutes
 // parseNews('https://www.vioms.ru/mailings/36450/full')
 // parseNews('https://www.vioms.ru/mailings/36496/full')
 
-// Check news and create file
-load.checkAndCreateFile()
+
 
 bot.on('message', (msg) => {
     console.log(msg)
