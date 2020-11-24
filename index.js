@@ -6,7 +6,7 @@ const app = express()
 const botAwaking = require('./botPushing')
 const {APPLICATION_URL} = require('./config')
 const PORT = process.env.PORT || 80 
-const updateRssDalay = 10 // minutes
+const updateRssDalay = 11 // minutes
 
 // console.log('bot is working ...')
 
