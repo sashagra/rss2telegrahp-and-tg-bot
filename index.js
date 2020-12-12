@@ -27,11 +27,14 @@ setInterval(() => {
     parseRss()
     .then((links) => {
         if (links && links.length) {
+            console.log(`Incomming news: ${links} item/s`)
             links.reverse().forEach((link, idx) => {
                 setTimeout(() => {
                     parseNews(link)
                 }, 20000 * (idx + 1))
             })
+        } else {
+            console.log('No news to parse')
         };
     })
         .catch(err => console.log(err));

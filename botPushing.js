@@ -7,7 +7,7 @@ module.exports = (link) => {
             data += chunk;
         });
         resp.on('end', () => {
-            console.log('Тормошим бота')
+            // console.log('Тормошим бота')
         });
         }).on("error", (err) => {
         console.log("Error: " + err.message);
