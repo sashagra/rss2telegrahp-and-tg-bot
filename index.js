@@ -3,10 +3,10 @@ const parseNews = require('./parsers/parseNewsPage');
 const { bot } = require('./telegram/tgApi')
 const express = require('express')
 const app = express()
-const botAwaking = require('./botPushing')
+// const botAwaking = require('./botPushing')
 // const {APPLICATION_URL} = require('./config')
 const PORT = process.env.PORT || 80 
-const updateRssDalay = 11 // minutes
+// const updateRssDalay = 11 // minutes
 
 // console.log('bot is working ...')
 
@@ -22,9 +22,9 @@ bot.on('message', (msg) => {
     bot.sendMessage(msg.chat.id, `Received your message\n${msg.text}`);
   });
 
-setInterval(() => {
+// setInterval(() => {
     // botAwaking(APPLICATION_URL);
-    parseRss()
+parseRss()
     .then((links) => {
         if (links && links.length) {
             console.log(`Incomming news: ${links} item/s`)
@@ -37,8 +37,8 @@ setInterval(() => {
             console.log('No news to parse')
         };
     })
-        .catch(err => console.log(err));
-}, 1000 * 60 * updateRssDalay)
+    .catch(err => console.log(err));
+// }, 1000 * 60 * updateRssDalay)
 
 app.get('*', (req, res) => {
     res.end('<h1>Bot is working...</h1>')
