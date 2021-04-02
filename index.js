@@ -4,7 +4,7 @@ const { bot } = require('./telegram/tgApi')
 const express = require('express')
 const app = express()
 const botAwaking = require('./botPushing')
-const {APPLICATION_URL} = require('./config')
+// const {APPLICATION_URL} = require('./config')
 const PORT = process.env.PORT || 80 
 const updateRssDalay = 11 // minutes
 
@@ -23,7 +23,7 @@ bot.on('message', (msg) => {
   });
 
 setInterval(() => {
-    botAwaking(APPLICATION_URL);
+    // botAwaking(APPLICATION_URL);
     parseRss()
     .then((links) => {
         if (links && links.length) {
