@@ -42,7 +42,7 @@ setInterval(() => {
 
 app.get('*', (req, res) => {
     parseFunc()
-    res.end(`<h1>Bot is working...</h1><p>You request: <br>${JSON.stringify(req)}</p>`)
+    res.end(`<h1>Bot is working...</h1><p>You request: <br>${req}</p>`)
 })
 
 app.listen(PORT, () => console.log('Bot is working...'))
