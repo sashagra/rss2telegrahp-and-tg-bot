@@ -22,7 +22,7 @@ bot.on('message', (msg) => {
     bot.sendMessage(msg.chat.id, `Received your message\n${msg.text}`);
   });
 
-setInterval(() => {
+// setInterval(() => {
     // botAwaking(APPLICATION_URL);
     parseRss()
     .then((links) => {
@@ -38,10 +38,11 @@ setInterval(() => {
         };
     })
         .catch(err => console.log(err));
-}, 1000 * 60 * updateRssDalay)
+// }, 1000 * 60 * updateRssDalay)
 
 app.get('*', (req, res) => {
     res.end('<h1>Bot is working...</h1>')
+
 })
 
 app.listen(PORT, () => console.log('Bot is working...'))
