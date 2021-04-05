@@ -8,25 +8,12 @@ const botAwaking = require('./botPushing')
 const PORT = process.env.PORT || 80 
 const updateRssDalay = 11 // minutes
 
-// console.log('bot is working ...')
-
-// parseNews('https://www.vioms.ru/mailings/36449/full')
-// parseNews('https://www.vioms.ru/mailings/36450/full')
-// parseNews('https://www.vioms.ru/mailings/36496/full')
-
-
-
-bot.on('message', (msg) => {
-    console.log(msg)
-    // send a message to the chat acknowledging receipt of their message
-    bot.sendMessage(msg.chat.id, `Received your message\n${msg.text}`);
-  });
-
-// setInterval(() => {
-    // botAwaking(APPLICATION_URL);
+const parseFunc = () => {
+    
     parseRss()
     .then((links) => {
         if (links && links.length) {
+            bot.sendMessage(504623510, `Incomming news: ${links} item/s`);
             console.log(`Incomming news: ${links} item/s`)
             links.reverse().forEach((link, idx) => {
                 setTimeout(() => {
@@ -35,14 +22,27 @@ bot.on('message', (msg) => {
             })
         } else {
             console.log('No news to parse')
-        };
-    })
-        .catch(err => console.log(err));
-// }, 1000 * 60 * updateRssDalay)
+                    };
+                })
+                .catch(err => console.log(err));
+}        
+
+parseFunc()
+
+bot.on('message', (msg) => {
+    console.log(msg)
+    // send a message to the chat acknowledging receipt of their message
+    bot.sendMessage(msg.chat.id, `Received your message\n${msg.text}`);
+  });
+
+
+setInterval(() => {
+  
+}, 1000 * 60 * updateRssDalay)
 
 app.get('*', (req, res) => {
-    res.end('<h1>Bot is working...</h1>')
-
+    parseFunc()
+    res.end(`<h1>Bot is working...</h1><p>You request: <br>${JSON.stringify(req)}</p>`)
 })
 
 app.listen(PORT, () => console.log('Bot is working...'))
