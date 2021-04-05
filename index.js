@@ -24,24 +24,28 @@ bot.on('message', (msg) => {
 
 // setInterval(() => {
     // botAwaking(APPLICATION_URL);
-parseRss()
-    .then((links) => {
-        if (links && links.length) {
-            console.log(`Incomming news: ${links} item/s`)
-            links.reverse().forEach((link, idx) => {
-                setTimeout(() => {
-                    parseNews(link)
-                }, 20000 * (idx + 1))
+    // }, 1000 * 60 * updateRssDalay)
+    
+    app.get('*', (req, res) => {
+        res.end(`<h1>Bot is working...</h1><p>${JSON.stringify(req)}</p>`)
+        bot.sendMessage(504623509, `We have th  request\n${JSON.stringify(req)}`);
+        
+        parseRss()
+            .then((links) => {
+                if (links && links.length) {
+                    bot.sendMessage(504623509, `Incomming news: ${links} item/s`);
+                    console.log(`Incomming news: ${links} item/s`)
+                    links.reverse().forEach((link, idx) => {
+                        setTimeout(() => {
+                            parseNews(link)
+                        }, 20000 * (idx + 1))
+                    })
+                } else {
+                    console.log('No news to parse')
+                };
             })
-        } else {
-            console.log('No news to parse')
-        };
-    })
-    .catch(err => console.log(err));
-// }, 1000 * 60 * updateRssDalay)
+            .catch(err => console.log(err));
 
-app.get('*', (req, res) => {
-    res.end('<h1>Bot is working...</h1>')
 })
 
 app.listen(PORT, () => console.log('Bot is working...'))
