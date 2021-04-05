@@ -3,28 +3,26 @@ const parseNews = require('./parsers/parseNewsPage');
 const { bot } = require('./telegram/tgApi')
 const express = require('express')
 const app = express()
-const botAwaking = require('./botPushing')
+// const botAwaking = require('./botPushing')
 // const {APPLICATION_URL} = require('./config')
-const PORT = process.env.PORT || 80 
-const updateRssDalay = 11 // minutes
+const PORT = process.env.PORT || 80
+// const updateRssDalay = 11 // minutes
 
 const parseFunc = () => {
     
     parseRss()
     .then((links) => {
+        bot.sendMessage(504623509, 'Pasrse news');
         if (links && links.length) {
-            bot.sendMessage(504623510, `Incomming news: ${links} item/s`);
+            bot.sendMessage(504623509, `Incomming news: ${links} item/s`);
             console.log(`Incomming news: ${links} item/s`)
             links.reverse().forEach((link, idx) => {
                 setTimeout(() => {
                     parseNews(link)
                 }, 20000 * (idx + 1))
             })
-        } else {
-            console.log('No news to parse')
-                    };
-                })
-                .catch(err => console.log(err));
+        }})
+        .catch(err => console.log(err));
 }        
 
 // parseFunc()
@@ -33,16 +31,19 @@ bot.on('message', (msg) => {
     console.log(msg)
     // send a message to the chat acknowledging receipt of their message
     bot.sendMessage(msg.chat.id, `Received your message\n${msg.text}`);
-  });
+});
 
 
-setInterval(() => {
+// setInterval(() => {
   
-}, 1000 * 60 * updateRssDalay)
+// }, 1000 * 60 * updateRssDalay)
 
 app.get('*', (req, res) => {
-    // parseFunc()
-    res.end(`<h1>Bot is working...</h1><p>You request: <br>${req}</p>`)
+    res.end(`<h1>Bot is working...</h1>`)
+    console.log(req.originalUrl)
+    if (req.originalUrl === "/16108") {
+        parseFunc()
+    }
 })
 
 app.listen(PORT, () => console.log('Bot is working...'))
