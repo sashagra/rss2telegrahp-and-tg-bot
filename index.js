@@ -27,7 +27,7 @@ const parseFunc = () => {
                 .catch(err => console.log(err));
 }        
 
-parseFunc()
+// parseFunc()
 
 bot.on('message', (msg) => {
     console.log(msg)
@@ -41,7 +41,7 @@ setInterval(() => {
 }, 1000 * 60 * updateRssDalay)
 
 app.get('*', (req, res) => {
-    parseFunc()
+    // parseFunc()
     res.end(`<h1>Bot is working...</h1><p>You request: <br>${req}</p>`)
 })
 
