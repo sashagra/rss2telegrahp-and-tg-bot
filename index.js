@@ -3,10 +3,10 @@ const parseNews = require('./parsers/parseNewsPage');
 const { bot } = require('./telegram/tgApi')
 const express = require('express')
 const app = express()
-// const botAwaking = require('./botPushing')
+const botAwaking = require('./botPushing')
 // const {APPLICATION_URL} = require('./config')
 const PORT = process.env.PORT || 80 
-// const updateRssDalay = 11 // minutes
+const updateRssDalay = 11 // minutes
 
 // console.log('bot is working ...')
 
@@ -22,30 +22,26 @@ bot.on('message', (msg) => {
     bot.sendMessage(msg.chat.id, `Received your message\n${msg.text}`);
   });
 
-// setInterval(() => {
+setInterval(() => {
     // botAwaking(APPLICATION_URL);
-    // }, 1000 * 60 * updateRssDalay)
-    
-    app.get('*', (req, res) => {
-        res.end(`<h1>Bot is working...</h1><p>${JSON.stringify(req)}</p>`)
-        bot.sendMessage(504623509, `We have th  request\n${JSON.stringify(req)}`);
-        
-        parseRss()
-            .then((links) => {
-                if (links && links.length) {
-                    bot.sendMessage(504623509, `Incomming news: ${links} item/s`);
-                    console.log(`Incomming news: ${links} item/s`)
-                    links.reverse().forEach((link, idx) => {
-                        setTimeout(() => {
-                            parseNews(link)
-                        }, 20000 * (idx + 1))
-                    })
-                } else {
-                    console.log('No news to parse')
-                };
+    parseRss()
+    .then((links) => {
+        if (links && links.length) {
+            console.log(`Incomming news: ${links} item/s`)
+            links.reverse().forEach((link, idx) => {
+                setTimeout(() => {
+                    parseNews(link)
+                }, 20000 * (idx + 1))
             })
-            .catch(err => console.log(err));
+        } else {
+            console.log('No news to parse')
+        };
+    })
+        .catch(err => console.log(err));
+}, 1000 * 60 * updateRssDalay)
 
+app.get('*', (req, res) => {
+    res.end('<h1>Bot is working...</h1>')
 })
 
 app.listen(PORT, () => console.log('Bot is working...'))
