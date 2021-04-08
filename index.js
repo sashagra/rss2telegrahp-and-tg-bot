@@ -5,7 +5,7 @@ const express = require('express')
 const app = express()
 // const botAwaking = require('./botPushing')
 // const {APPLICATION_URL} = require('./config')
-const PORT = process.env.PORT || 80
+const PORT = process.env.PORT || 8080
 // const updateRssDalay = 11 // minutes
 
 const parseFunc = () => {
@@ -46,7 +46,7 @@ app.get('*', (req, res) => {
     }
 })
 
-app.listen(PORT, () => console.log('Bot is working...'))
+app.listen(PORT, () => console.log('Bot is working on http://localhost:' + PORT))
 // TODO большие посты в телеграф, малые в телегу
 // TODO универсальный парсинг страничек
 // TODO функция добавления чата или канала для постинга
