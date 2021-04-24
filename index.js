@@ -9,11 +9,13 @@ const PORT = process.env.PORT || 80
 // const updateRssDalay = 11 // minutes
 
 const parseFunc = () => {
-    
+    let fixNews
     parseRss()
     .then((links) => {
         bot.sendMessage(504623509, 'Pasrse news');
         if (links && links.length) {
+            if (fixNews && fixNews === links[0]) return // fix doubles of news
+            fixNews = links[0]
             bot.sendMessage(504623509, `Incomming news: ${links} item/s`);
             console.log(`Incomming news: ${links} item/s`)
             links.reverse().forEach((link, idx) => {
