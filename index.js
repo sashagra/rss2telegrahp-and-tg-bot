@@ -3,10 +3,7 @@ const parseNews = require('./parsers/parseNewsPage');
 const { bot } = require('./telegram/tgApi')
 const express = require('express')
 const app = express()
-// const botAwaking = require('./botPushing')
-// const {APPLICATION_URL} = require('./config')
-const PORT = process.env.PORT || 80
-// const updateRssDalay = 11 // minutes
+const PORT = process.env.PORT || 8080
 
 const parseFunc = () => {
     let fixNews
@@ -27,25 +24,30 @@ const parseFunc = () => {
         .catch(err => console.log(err));
 }        
 
-// parseFunc()
-
 bot.on('message', (msg) => {
     console.log(msg)
-    // send a message to the chat acknowledging receipt of their message
     bot.sendMessage(msg.chat.id, `Received your message\n${msg.text}`);
 });
 
 
-// setInterval(() => {
-  
-// }, 1000 * 60 * updateRssDalay)
+app.get('/', (req, res, next) => {
+    if (req.originalUrl === '/') {
+      res.send('Service is running!');
+      return;
+    }
+    next();
+  });
 
-app.get('*', (req, res) => {
-    res.end(`<h1>Bot is working...</h1>`)
-    console.log(req.originalUrl)
+app.get('/16108', (req, res) => {
     if (req.originalUrl === "/16108") {
         parseFunc()
+        res.json({status: "News parsing started"})
     }
+})
+
+app.get('/message/:text', (req, res) => {
+    bot.sendMessage(-598430375, req.params.text)
+    res.json({status: 'OK', message: req.params.text})
 })
 
 app.listen(PORT, () => console.log('Bot is working...'))
@@ -54,4 +56,3 @@ app.listen(PORT, () => console.log('Bot is working...'))
 // TODO функция добавления чата или канала для постинга
 // TODO выбор в диалоге, что постить
 // TODO в первый запуск публиковать только сегодняшние посты или никакие.
-// TODO проверять есть ли rss.json и сооздавать если нету
