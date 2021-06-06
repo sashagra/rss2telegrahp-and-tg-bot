@@ -1,9 +1,9 @@
-const {Router, response} = require('express')
+const {Router} = require('express')
 const { bot } = require('../telegram/tgApi')
 const parseMessage = require('../helpers/parseMessages').parseMessage
 const router = Router()
 
-const CHAT_IKIRTAN = '-598430375'
+const CHAT_IKIRTAN = '-1001419289225'
 const TEST_CHAT_FOR_GTBOT ='-1001402888933'
 
 router.get('/:text', (req, res) => {
