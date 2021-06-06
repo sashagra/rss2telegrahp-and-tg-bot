@@ -2,8 +2,12 @@ const parseRss = require('./parsers/parseRss');
 const parseNews = require('./parsers/parseNewsPage');
 const { bot } = require('./telegram/tgApi')
 const express = require('express')
+const message = require('./routes/message')
 const app = express()
 const PORT = process.env.PORT || 8080
+
+const cors = require('cors')
+app.use(cors());
 
 const parseFunc = () => {
     let fixNews
@@ -45,10 +49,12 @@ app.get('/16108', (req, res) => {
     }
 })
 
-app.get('/message/:text', (req, res) => {
-    bot.sendMessage(-598430375, req.params.text)
-    res.json({status: 'OK', message: req.params.text})
-})
+// app.get('/message/:text', (req, res) => {
+//     bot.sendMessage(-598430375, req.params.text)
+//     res.json({status: 'OK', message: req.params.text})
+// })
+
+app.use('/message', message)
 
 app.listen(PORT, () => console.log('Bot is working...'))
 // TODO большие посты в телеграф, малые в телегу
