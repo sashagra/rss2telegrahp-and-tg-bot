@@ -17,8 +17,8 @@ const parseFunc = () => {
         if (links && links.length) {
             if (fixNews && fixNews === links[0]) return // fix doubles of news
             fixNews = links[0]
-            bot.sendMessage(504623509, `Incomming news: ${links} item/s`);
-            console.log(`Incomming news: ${links} item/s`)
+            bot.sendMessage(504623509, `Incomming news: ${links.join(', ')} item/s`);
+            console.log(`Incomming news: ${linksString} item/s`)
             links.reverse().forEach((link, idx) => {
                 setTimeout(() => {
                     parseNews(link)
