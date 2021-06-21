@@ -51,7 +51,8 @@ const replaceSymbol = txt => {
     ['&mdash;', '—'],
     ['&laquo;', '«'],
     ['&raquo;', '»'],
-    ['&bull;', '•']
+    ['&bull;', '•'],
+    ['&gt;', '>']
   ]
 
   replacementTable.forEach(sym => {
