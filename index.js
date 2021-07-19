@@ -1,4 +1,7 @@
-require('./telegram/bot-init')     
+require('./telegram/bot-init')
+const { logger } = require('./logging/logging');
+
+logger.info('Bot was started')
 
 
 // TODO большие посты в телеграф, малые в телегу

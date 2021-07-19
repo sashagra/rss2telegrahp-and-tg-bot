@@ -1,3 +1,4 @@
 node_modules/
 .env
 data/rss.json
+logging/my_bot.log
