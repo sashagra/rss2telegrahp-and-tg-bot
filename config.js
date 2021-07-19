@@ -8,6 +8,7 @@ dotenv.config({
 module.exports = {
   TOKKEN: process.env.BOT_TOKKEN,
   CHAT_ID: process.env.CHAT_ID, // default channel id to post news
+  ADMIN_ID: process.env.ADMIN_ID, // bot admin id
   ACCESS_TOKEN: process.env.ACCESS_TOKEN, // telegra.ph api token
   AUTH_URL: process.env.AUTH_URL, // telegra.ph api url
   NAME_OF_CHANNEL: 'Новости-минской-общины',

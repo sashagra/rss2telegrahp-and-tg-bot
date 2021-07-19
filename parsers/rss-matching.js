@@ -1,4 +1,4 @@
-const isNewPost = require('../helpers/compareDate')
+const isNewPost = require('../helpers/compare-date')
 
 const getNewsLinks = newDataArr => {
   let newsLinks = []
