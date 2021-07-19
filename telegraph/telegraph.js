@@ -1,5 +1,5 @@
 const { httpsPost } = require('../helpers/httpsPostPromise')
-const { telegramPost } = require('../telegram/tgApi');
+const { telegramPost } = require('../telegram/bot-init');
 const { ACCESS_TOKEN, AUTH_URL } = require('../config')
 
 
