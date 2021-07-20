@@ -16,9 +16,16 @@ const bot = new TelegramBot(TOKKEN, {polling: {
 const arrOfUsers = []
 
 bot.on('message', (msg) => {
-    logger.info(JSON.stringify(msg))
+    logger.info('Incoming message: ' + JSON.stringify(msg))
     // message process
     const answer = mesProcces(msg)
     // bot.sendMessage(newsChatId, `Received your message\n${msg.text}`);
-    bot.sendMessage(msg.chat.id, answer);
+    bot.sendMessage(msg.chat.id, answer)
 });
+logger.warn('Bot was started')
+
+function telegramPost(msg) {
+    bot.sendMessage(newsChatId, msg)
+}
+
+module.exports = { telegramPost }

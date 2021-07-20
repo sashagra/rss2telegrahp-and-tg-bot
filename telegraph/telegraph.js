@@ -1,6 +1,7 @@
 const { httpsPost } = require('../helpers/https-post-promise')
 const { telegramPost } = require('../telegram/bot-init');
 const { ACCESS_TOKEN, AUTH_URL } = require('../config')
+const { logger } = require('../logging/logging')
 
 
 const createTelegraphPost = (title, authorName, content, authorUrl = "") => {
@@ -15,7 +16,7 @@ const createTelegraphPost = (title, authorName, content, authorUrl = "") => {
     const telegraphPostUrl = data.result.url
     telegramPost(telegraphPostUrl)
   })
-  .catch(err => console.log('from post', err));
+  .catch(err => logger.error('from post', err));
 
 }
 

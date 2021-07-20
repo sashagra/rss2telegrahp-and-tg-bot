@@ -1,17 +1,16 @@
-const https = require('https');
-const htmlparser2 = require('htmlparser2');
+const https = require('https')
+const htmlparser2 = require('htmlparser2')
+const { logger } = require('../logging/logging')
 const { domToTelegraphPost } = require('../telegraph/telegraph-convert')
-const createTelegraphPost = require('../telegraph/telegraph');
-const { NAME_OF_CHANNEL } = require('../config');
-const { bot } = require('../telegram/bot-init');
+const createTelegraphPost = require('../telegraph/telegraph')
+const { NAME_OF_CHANNEL } = require('../config')
 const { CHAT_ID: news_channel_id } = require('../config')
 
 const parseNews = (link) => {
-    const scheduleTitle = 'Расписание лекций'
     https.get(link, (resp) => {
-    let data = '';
+    let data = ''
     resp.on('data', (chunk) => {
-        data += chunk;
+        data += chunk
     });
     resp.on('end', () => {
         let dom = htmlparser2.parseDOM(data);
@@ -23,15 +22,15 @@ const parseNews = (link) => {
                 NAME_OF_CHANNEL,
                 JSON.stringify(postNodes),
                 link
-            );
+            )
 
         } else {
-            console.log('Пост не отправлен')
+            logger.warn('Post have not been sended')
         }
     });
     }).on("error", (err) => {
-        console.log("Error: " + err.message);
-    });
+        logger.err(JSON.stringify(err))
+    })
 }
 
-module.exports = parseNews;
+module.exports = parseNews
