@@ -21,7 +21,7 @@ const parseFunc = () => {
         } else {
             logger.info('No incomming news')
         }})
-        .catch(err => logger.error(err))
+        .catch(err => logger.error(JSON.stringify(err)))
 }
 
 module.exports = { parseFunc }

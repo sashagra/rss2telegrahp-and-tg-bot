@@ -58,7 +58,6 @@ const replaceSymbol = txt => {
   replacementTable.forEach(sym => {
     txt = txt.split(sym[0]).join(sym[1])
   })
-    // console.log(txt)
   return txt
 }
  

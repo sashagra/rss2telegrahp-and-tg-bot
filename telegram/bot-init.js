@@ -1,7 +1,7 @@
-const TelegramBot = require('node-telegram-bot-api');
+const TelegramBot = require('node-telegram-bot-api')
 const { logger } = require('../logging/logging')
 const { TOKKEN } = require('../config')
-const { mesProcces, MesProcces } = require('./messaging')
+const { mesProcces } = require('./messaging')
 const { CHAT_ID: newsChatId } = require('../config')
 
 // creating tg bot
@@ -11,16 +11,12 @@ const bot = new TelegramBot(TOKKEN, {polling: {
     params: {
         timeout: 10
     }
-}});
-
-const arrOfUsers = []
+}})
 
 bot.on('message', (msg) => {
     logger.info('Incoming message: ' + JSON.stringify(msg))
-    // message process
     const answer = mesProcces(msg)
-    // bot.sendMessage(newsChatId, `Received your message\n${msg.text}`);
-    bot.sendMessage(msg.chat.id, answer)
+    bot.sendMessage(msg.from.id, answer)
 });
 logger.warn('Bot was started')
 

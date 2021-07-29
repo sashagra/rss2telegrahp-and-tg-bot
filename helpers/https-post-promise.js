@@ -1,4 +1,4 @@
-const https = require('https');
+const https = require('https')
 
 const httpsPost = (url, path, data) => new Promise((resolve, reject) => {
     data = JSON.stringify(data)
@@ -10,29 +10,29 @@ const httpsPost = (url, path, data) => new Promise((resolve, reject) => {
         headers: {
           'Content-Type': 'application/json'
         },
-      };
+      }
   const req = https.request(params, res => {
-    const { statusCode } = res;
+    const { statusCode } = res
     if (statusCode < 200 || statusCode >= 300)
-      return reject(new Error(`status:${statusCode}`));
+      return reject(new Error(`status:${statusCode}`))
 
     let body = [];
-    res.on('data', c => body.push(c));
+    res.on('data', c => body.push(c))
 
     res.on('end', () => {
       try {
-        body = JSON.parse(Buffer.concat(body).toString());
+        body = JSON.parse(Buffer.concat(body).toString())
       } catch (e) {
-        reject(e);
+        reject(e)
     }
-    resolve(body);
-    });
-  });
+    resolve(body)
+    })
+  })
 
-  req.on('error', err => reject(err));
+  req.on('error', err => reject(err))
   if (data)
-    req.write(data);
-  req.end();
-});
+    req.write(data)
+  req.end()
+})
 
-module.exports = { httpsPost };
+module.exports = { httpsPost }
