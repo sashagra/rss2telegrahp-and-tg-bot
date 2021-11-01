@@ -13,7 +13,7 @@ const createTelegraphPost = (title, authorName, content, authorUrl = "") => {
   })
   .then(data => {
     const telegraphPostUrl = data.result.url
-    telegramPost(telegraphPostUrl)
+    console.log(telegraphPostUrl)
   })
   .catch(err => console.log('from post', err));
 
