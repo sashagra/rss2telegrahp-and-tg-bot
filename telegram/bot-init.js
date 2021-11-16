@@ -18,7 +18,7 @@ bot.on('message', (msg) => {
     const answer = mesProcces(msg)
     bot.sendMessage(msg.from.id, answer)
 });
-logger.warn('Bot was started')
+logger.warn('Bot has been started')
 
 function telegramPost(msg) {
     bot.sendMessage(newsChatId, msg)

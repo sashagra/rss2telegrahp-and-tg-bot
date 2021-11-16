@@ -24,8 +24,11 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "htmlparser2": "^4.1.0",
+    "imap": "^0.8.19",
+    "imapflow": "^1.0.76",
     "log4js": "^6.3.0",
     "logging": "^3.3.0",
+    "node-imap": "^0.9.6",
     "node-telegram-bot-api": "^0.50.0",
     "rss-parser": "^3.9.0",
     "util": "^0.12.3"

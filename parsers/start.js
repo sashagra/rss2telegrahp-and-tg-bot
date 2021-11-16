@@ -1,13 +1,18 @@
 const parseRss = require('./parse-rss')
 const parseNews = require('./parse-news-page')
-const { CHECK_RSS_DELAY } = require('../config')
+const newsFromMail = require('./mail-parser')
 const { logger } = require('../logging/logging')
+
+const parsers = {
+    parseRss,
+    newsFromMail
+}
 
 
 const parseFunc = () => {
     let fixNews
     logger.info('Parse news')
-    parseRss()
+    parsers.newsFromMail()
     .then((links) => {
         if (links && links.length) {
             if (fixNews && fixNews === links[0]) return // fix doubles of news
