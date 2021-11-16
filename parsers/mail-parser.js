@@ -1,20 +1,19 @@
 const { MAIL_PASS, MAIL_USER } = require('../config')
 const isNewPost = require('../helpers/compare-date')
 
-const { ImapFlow } = require('imapflow');
-const client = new ImapFlow({
-    host: 'imap.gmail.com',
-    port: 993,
-    secure: true,
-    auth: {
-        user: MAIL_USER,
-        pass: MAIL_PASS
-    }
-});
-
 const FROM = 'Новости минской общины ИСККОН'
 
 const newsFromMail = async () => {
+  const { ImapFlow } = require('imapflow');
+  const client = new ImapFlow({
+      host: 'imap.gmail.com',
+      port: 993,
+      secure: true,
+      auth: {
+          user: MAIL_USER,
+          pass: MAIL_PASS
+      }
+  });
   const news = []
   // Wait until client connects and authorizes
   await client.connect();
