@@ -12,6 +12,6 @@ module.exports = {
   AUTH_URL: process.env.AUTH_URL,
   NAME_OF_CHANNEL: "Новости минской общины",
   RSS_URL: process.env.RSS_URL,
-  CHANNEL_PICTURE_URL: "https://krishna.by/images/yootheme/logo.png",
+  CHANNEL_PICTURE_URL: "https://sattvalife.ru/services/img/minskhk.jpg",
   APPLICATION_URL: process.env.APPLICATION_URL
 };
