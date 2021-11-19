@@ -3,22 +3,22 @@ const parseNews = require('./parse-news-page')
 const newsFromMail = require('./mail-parser')
 const { getNewsFromApi } = require('./vioms-api')
 const { logger } = require('../logging/logging')
+const { PARSE_METHOD } = require('../config')
 
 const parsers = {
-    parseRss,
-    newsFromMail,
-    getNewsFromApi
+    rss: parseRss,
+    email: newsFromMail,
+    api: getNewsFromApi
 }
 
 
 const parseFunc = () => {
     let fixNews
     logger.info('Parse news')
-    parsers.getNewsFromApi()
+    parsers[PARSE_METHOD]()
         .then((links) => {
             console.log(links)
             if (links && links.length) {
-                return
                 if (fixNews && fixNews === links[0]) return // fix doubles of news
                 fixNews = links[0]
                 logger.info(`Incomming news: ${links.join(', ')} item/s`)

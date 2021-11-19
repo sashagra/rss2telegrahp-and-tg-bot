@@ -27,9 +27,9 @@ const domToTelegraphPost = dom => {
     attrs: {src: pictureUrl}
   })
   $('p').each((idx, el) => {
-    const p = replaceSymbol($(el).text().trim())
+    const p = replaceSymbol($(el).text().trim()) // TODO test without trim()
     if (p !== '&nbsp;' && p !== '') postNodes.push({tag: 'p', children: [p]})
-  } )
+  })
 
   
   return {
@@ -41,7 +41,7 @@ const domToTelegraphPost = dom => {
 const replaceSymbol = txt => {
   const replacementTable = [
     ['&ndash;', '–'],
-    ['&nbsp;', ''],
+    ['&nbsp;', ' '],
     ['&#39;', '"'],
     ['&times;', '×'],
     ['&asymp;', '≈'],

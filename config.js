@@ -16,5 +16,6 @@ module.exports = {
   NAME_OF_CHANNEL: 'Новости-минской-общины',
   RSS_URL: 'https://www.vioms.ru/email_lists/151.rss', // default uptl to parse news
   CHANNEL_PICTURE_URL: 'https://sattvalife.ru/services/img/minskhk.jpg',
-  CHECK_RSS_DELAY: 10 // min
+  CHECK_RSS_DELAY: 10, // min
+  PARSE_METHOD: 'api' // choose one: api/email/rss. 
 }
