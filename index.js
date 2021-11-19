@@ -4,7 +4,7 @@ const { CHECK_RSS_DELAY } = require('./config')
 require('./telegram/bot-init')
 
 logger.info(`Start checking RSS feed with delay ${CHECK_RSS_DELAY} minutes`)
-setInterval(parseFunc, CHECK_RSS_DELAY * 300 )
+setInterval(parseFunc, CHECK_RSS_DELAY * 60 * 1000 )
 
 
 // TODO большие посты в телеграф, малые в телегу
