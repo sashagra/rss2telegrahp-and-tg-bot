@@ -16,6 +16,6 @@ module.exports = {
   NAME_OF_CHANNEL: 'Новости-минской-общины',
   RSS_URL: 'https://www.vioms.ru/email_lists/151.rss',
   CHANNEL_PICTURE_URL: 'https://sattvalife.ru/services/img/minskhk.jpg',
-  CHECK_RSS_DELAY: 10, // min
+  CHECK_RSS_DELAY: 1, // min
   PARSE_METHOD: 'api' // choose one: api/email/rss. You need to provide valid credantials in .env file
 }

@@ -19,10 +19,11 @@ const getAllLists = () => {
 }
 
 
-const getNewsFromApi = () => {
+const getNewsFromApi = async () => {
   const listId = RSS_URL.split('email_lists/')[1].split('.')[0]
   const link = `https://www.vioms.ru/api/mobile/v2/email_lists/${listId}/mailings.json?page=1`
-  return httpsGet(link).then(data => sortNews(data))
+  const data = await httpsGet(link)
+  return sortNews(data)
 }
 
 

@@ -14,10 +14,9 @@ const parsers = {
 
 const parseFunc = () => {
     let fixNews
-    logger.info('Parse news')
+    // logger.info('Parse news')
     parsers[PARSE_METHOD]()
         .then((links) => {
-            console.log(links)
             if (links && links.length) {
                 if (fixNews && fixNews === links[0]) return // fix doubles of news
                 fixNews = links[0]
@@ -28,7 +27,7 @@ const parseFunc = () => {
                     }, 20000 * (idx + 1))
                 })
             } else {
-                logger.info('No incomming news')
+                // logger.info('No incomming news')
             }
         })
         .catch(err => logger.error(JSON.stringify(err)))

@@ -1,9 +1,9 @@
 const { logger } = require('./logging/logging')
 const { parseFunc } = require('./parsers/start')
-const { CHECK_RSS_DELAY } = require('./config')
+const { CHECK_RSS_DELAY, PARSE_METHOD } = require('./config')
 require('./telegram/bot-init')
 
-logger.info(`Start checking RSS feed with delay ${CHECK_RSS_DELAY} minutes`)
+logger.info(`Start checking news from ${PARSE_METHOD} with delay ${CHECK_RSS_DELAY} minutes`)
 setInterval(parseFunc, CHECK_RSS_DELAY * 60 * 1000 )
 
 
