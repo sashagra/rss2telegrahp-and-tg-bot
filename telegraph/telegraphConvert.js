@@ -41,7 +41,7 @@ const domToTelegraphPost = dom => {
 const replaceSymbol = txt => {
   const replacementTable = [
     ['&ndash;', '–'],
-    ['&nbsp;', ''],
+    ['&nbsp;', ' '],
     ['&#39;', '"'],
     ['&times;', '×'],
     ['&asymp;', '≈'],
