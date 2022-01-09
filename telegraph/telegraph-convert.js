@@ -1,4 +1,6 @@
 const cheerio = require('cheerio')
+const { text } = require('cheerio/lib/api/manipulation')
+const {decode} = require('html-entities')
 const { CHANNEL_PICTURE_URL } = require('../config')
 
 const domToTelegraphPost = dom => {
@@ -26,9 +28,10 @@ const domToTelegraphPost = dom => {
     tag: 'img',
     attrs: {src: pictureUrl}
   })
+  regex = /&.{2,6};/g
   $('p').each((idx, el) => {
-    const p = replaceSymbol($(el).text().trim()) // TODO test without trim()
-    if (p !== '&nbsp;' && p !== '') postNodes.push({tag: 'p', children: [p]})
+    const p = el.replaceAll(regex, decode)
+    if (p !== '') postNodes.push({tag: 'p', children: [p]})
   })
 
   
@@ -38,27 +41,5 @@ const domToTelegraphPost = dom => {
   };
 }
 
-const replaceSymbol = txt => {
-  const replacementTable = [
-    ['&ndash;', '–'],
-    ['&nbsp;', ' '],
-    ['&#39;', '"'],
-    ['&times;', '×'],
-    ['&asymp;', '≈'],
-    ['&quot;', '"'],
-    ['(Гость)', ''],
-    ['&copy;', '©'],
-    ['&mdash;', '—'],
-    ['&laquo;', '«'],
-    ['&raquo;', '»'],
-    ['&bull;', '•'],
-    ['&gt;', '>']
-  ]
-
-  replacementTable.forEach(sym => {
-    txt = txt.split(sym[0]).join(sym[1])
-  })
-  return txt
-}
  
 module.exports = {domToTelegraphPost}

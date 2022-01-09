@@ -23,6 +23,7 @@
     "cheerio": "^1.0.0-rc.3",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
+    "html-entities": "^2.3.2",
     "htmlparser2": "^4.1.0",
     "imap": "^0.8.19",
     "imapflow": "^1.0.76",

@@ -8,14 +8,14 @@ const sortNews = (data) => {
   lastNewsId = data.mailings[0].id
   if (lastId === 0) return []
   const links = data.mailings
-    .filter(n => n.id > lastNewsId)
+    .filter(n => n.id > lastId)
     .map(n => `https://www.vioms.ru/mailings/${n.id}/full`)
   return links
 }
 
 
-const getAllLists = () => {
-  return httpsGet('https://www.vioms.ru/api/mobile/v2/email_lists/')
+const getAllLists = async () => {
+  return await httpsGet('https://www.vioms.ru/api/mobile/v2/email_lists/')
 }
 
 
