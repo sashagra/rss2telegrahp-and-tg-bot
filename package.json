@@ -28,7 +28,7 @@
     "logging": "^3.3.0",
     "node-telegram-bot-api": "^0.50.0",
     "rss-parser": "^3.9.0",
-    "util": "^0.12.3"
+    "util": "^0.12.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
