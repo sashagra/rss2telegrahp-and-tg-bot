@@ -27,7 +27,7 @@
     "log4js": "^6.3.0",
     "logging": "^3.3.0",
     "node-telegram-bot-api": "^0.50.0",
-    "rss-parser": "^3.9.0",
+    "rss-parser": "^3.13.0",
     "util": "^0.12.3"
   },
   "devDependencies": {
