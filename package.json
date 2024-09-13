@@ -24,7 +24,7 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "htmlparser2": "^4.1.0",
-    "log4js": "^6.3.0",
+    "log4js": "^6.9.1",
     "logging": "^3.3.0",
     "node-telegram-bot-api": "^0.50.0",
     "rss-parser": "^3.9.0",
